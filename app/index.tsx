@@ -1,13 +1,18 @@
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import * as injectTapEventPlugin from "react-tap-event-plugin";
 import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import reduxLogger from "redux-logger";
 import reduxThunk from "redux-thunk";
+import { CommitFunds } from "./components/CommitFunds";
 import App from "./containers/App";
+import muiTheme from "./muiTheme";
 import reducers from "./reducers";
 
+injectTapEventPlugin();
 const root = document.getElementById("react-root");
 
 const render = (storage: any) => {
@@ -16,9 +21,14 @@ const render = (storage: any) => {
   */
   if (root) {
     ReactDOM.render(
-      <Provider store={storage}>
-        <App />
-      </Provider>,
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <Provider store={storage}>
+          <div>
+            <App />
+            <CommitFunds />
+          </div>
+        </Provider>
+      </MuiThemeProvider>,
       root
     );
   }
