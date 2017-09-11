@@ -2,7 +2,6 @@ import { BigNumber } from "bignumber.js";
 import { ThunkAction } from "redux-thunk";
 import config from "../config";
 import { IAppState } from "../reducers";
-import { selectAddress } from "../reducers/icoState";
 import { loadIcoParamsFromContract } from "../web3/loadIcoParamsFromContract";
 import { LOAD_ICO_PARAMS } from "./constants";
 

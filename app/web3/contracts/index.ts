@@ -17,12 +17,9 @@ export interface INeumark {
   balanceOfAsync(address: string): Promise<BigNumber>;
 }
 
-
-export const Crowdsale = (): ICrowdsale => {
+export const Crowdsale = (address: string): ICrowdsale => {
   const ret = promisifyAll(
-    web3Instance.eth
-      .contract(PublicCommitmentJson)
-      .at(config.contractsDeployed.commitmentContractAddress)
+    web3Instance.eth.contract(PublicCommitmentJson).at(address)
   ) as ICrowdsale;
 
   return ret;
